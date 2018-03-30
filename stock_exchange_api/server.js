@@ -22,12 +22,14 @@ if (cluster.isMaster) {
     app = express(),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
-    Task = require('./api/models/stockExchangeModel'), //created model loading here
+    Stock = require('./api/models/stockExchangeModel'), //created model loading here
     bodyParser = require('body-parser');
-  
+
     // mongoose instance connection url connection
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://localhost/stockDB'); 
+    mongoose.connect('mongodb://localhost/stockDB', function(err){
+      console.log(err);
+    });
 
 
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,5 +43,5 @@ if (cluster.isMaster) {
     app.listen(port);
 
 
-    console.log('stock exchange RESTful API server started on: ' + port + 'Worker id:' + cluster.worker.id);
+    console.log('stock exchange RESTful API server started on: ' + port + ' Worker id: ' + cluster.worker.id);
 }

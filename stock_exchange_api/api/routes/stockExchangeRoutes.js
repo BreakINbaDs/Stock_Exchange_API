@@ -1,9 +1,7 @@
 'use strict';
 module.exports = function(app) {
-  var todoList = require('../controllers/stockExchangeController');
+  var stockExchange = require('../controllers/stockExchangeController');
 
   // stockExchage Route
-  app.route('/').get(todoList.list_all_tasks);
+  app.route('/:countrycode&:Category&:BaseBid').get(stockExchange.list_result);
 };
-
- 
