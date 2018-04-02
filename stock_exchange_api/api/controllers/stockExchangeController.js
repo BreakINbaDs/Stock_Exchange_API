@@ -29,11 +29,17 @@ exports.list_result = function(req, res) {
     for (var elem in task){
       Ids.push(String(task[elem]._id));
     };
+    console.log(country);
+    console.log(categ);
 
+    Stock.find({}, function(err, task){
+      console.log(task);
+    });
     // Base Targeting
-    Stock.find({coutries: country, category: categ},function(err, task) {
+    Stock.find({countries: country, category: categ},function(err, task) {
       if (err)
         res.send(err);
+      console.log(task);
       console.log("Base Targeting: ");
       if(task.length > 0){
         // Log positive results
@@ -48,7 +54,7 @@ exports.list_result = function(req, res) {
         };
 
         // Budget Check
-        Stock.find({coutries: country, category: categ, budget: {$gt: 0}},function(err, task) {
+        Stock.find({countries: country, category: categ, budget: {$gt: 0}},function(err, task) {
           if (err)
             res.send(err);
           console.log("Budget Check: ");
@@ -65,7 +71,7 @@ exports.list_result = function(req, res) {
             };
 
             // BaseBid Check + Shortlisting
-            Stock.find({coutries: country, category: categ, budget: {$gt: 0}, bId: {$lte: bid}},function(err, task) {
+            Stock.find({countries: country, category: categ, budget: {$gt: 0}, bId: {$lte: bid}},function(err, task) {
               if (err)
                 res.send(err);
               console.log("BaseBid Check: ");

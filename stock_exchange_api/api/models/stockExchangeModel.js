@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 
 var StockSchema = new Schema({
-  coutries:[String],
+  countries:[String],
   budget: Number,
   bId: Number,
   category: [String]

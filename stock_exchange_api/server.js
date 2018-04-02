@@ -1,6 +1,6 @@
 /// Include the cluster module
 const cluster = require('cluster');
-// Count the machine's CPUs
+// Count the machine's CPU cores
 const cpuCount = require('os').cpus().length;
 
 // Code to run if we're in the master process

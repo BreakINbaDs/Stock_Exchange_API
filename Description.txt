@@ -1,0 +1,26 @@
+Stock Exchange API
+
+To run the code you need to follow next steps:
+  1) Make shure that you have Node.js and MongoDB installed on your PC.
+  2) To make the API work you need to initialize database:
+    - open terminal and run command "mongod" to run MongoDB server
+    - in another terminal window run command "mongo" to open MongoDB shell
+    - in mongo shell run "use stockDB" to create a database with the name 'stockDB'
+    - then you need to initialize created DB with a "stocks" document, to do this
+    run the next command:
+    " db.stocks.insertMany([{countries: ["US","FR"], budget: 1, bId: 10, category: ["Automobile", "Finance"]},
+    {countries: ["IN", "US"], budget: 2, bId: 30, category: ["Finance", "IT"]},
+    {countries: ["US", "RU"], budget: 3, bId: 5, category: ["IT", "Automobile"]}]) "
+  3) Then open one more terminal window and navigate to "./stock_exchange_api" directory.
+  4) Run " npm install" and then "npm start" to start the server.
+  5) Now you can access API
+    Example: "localhost:3000/US&Automobile&10"
+
+Current API was built according to "Exchange Internal Matching Logic" from the assignment
+document. It consist of one GET method which takes 3 parameters: country, category and bId.
+Get method is represented by list_result() function which implements Matching logic in four
+steps, reporting logs after each step to the stockExchageDebug.log file and returning
+appropriate responses to the client after finishing work.
+
+Multiprocessing implemented during server initialization stage so there N workers listening
+on chosen port for incoming clients' connections, where N is a number of CPU's cores.
