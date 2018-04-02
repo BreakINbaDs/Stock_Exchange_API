@@ -1,4 +1,4 @@
-// Include the cluster module
+/// Include the cluster module
 const cluster = require('cluster');
 // Count the machine's CPUs
 const cpuCount = require('os').cpus().length;
@@ -43,5 +43,6 @@ if (cluster.isMaster) {
     app.listen(port);
 
 
-    console.log('stock exchange RESTful API server started on: ' + port + ' Worker id: ' + cluster.worker.id);
+    console.log('stock exchange RESTful API server started on: ' + ' Worker id: ' + cluster.worker.id);
+
 }
