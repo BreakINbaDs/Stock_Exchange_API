@@ -7,7 +7,7 @@ var util = require('util');
 var log_file = fs.createWriteStream('../stockExchageDebug.log', {flags : 'w'});
 var log_stdout = process.stdout;
 
-// Lets overload console.log() function to make it also write in og file
+// Lets overload console.log() function to make it also write in log file
 console.log = function(d) { //
   log_file.write(util.format(d) + '\n');
   log_stdout.write(util.format(d) + '\n');
@@ -16,7 +16,7 @@ console.log = function(d) { //
 
 
 exports.list_result = function(req, res) {
-  // Get params from rerquest
+  // Get params from request
   var country = req.params.countrycode,
       categ = req.params.Category,
       bid = req.params.BaseBid;
@@ -89,6 +89,7 @@ exports.list_result = function(req, res) {
                 Stock.update({_id: task[0]._id},{$set:{budget: newBudget}}, function (err, result) {
                   if (err)
                     res.send(err);
+                  // Response with the winner id
                   res.status(200).json(task[0]._id);
                 });
 
